@@ -62,6 +62,45 @@ npm start
 
 Acesse: http://localhost:3000
 
+## 🌐 Deploy no GitHub Pages
+
+Para publicar no GitHub Pages (hospedagem estática gratuita):
+
+### 1. Editar config.js
+
+Abra o arquivo `config.js` e configure suas categorias e figurinhas:
+
+```javascript
+const categoriesConfig = [
+    {
+        name: "Nome da Categoria",
+        nominees: [
+            {
+                caption: "Legenda",
+                path: "categories/Nome da Categoria/arquivo.png"
+            }
+        ]
+    }
+];
+```
+
+### 2. Fazer Commit e Push
+
+```bash
+git add .
+git commit -m "Add stickers configuration"
+git push
+```
+
+### 3. Ativar GitHub Pages
+
+1. Vá em **Settings** > **Pages** no seu repositório
+2. Em **Source**, selecione **main** branch
+3. Clique em **Save**
+4. Aguarde alguns minutos e acesse: `https://seu-usuario.github.io/stickers-awards/`
+
+> **Nota**: O GitHub Pages não executa Node.js, por isso a aplicação usa o arquivo `config.js` quando hospedada lá. Para desenvolvimento local, você ainda pode usar `npm start` para carregar dinamicamente das pastas.
+
 ## 🎯 Como Funciona
 
 1. **Tela de Nominadas**: Mostra todas as figurinhas nominadas para a categoria atual

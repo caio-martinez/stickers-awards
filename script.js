@@ -17,30 +17,36 @@ const nextCategoryBtn = document.getElementById('next-category-btn');
 // ===== INITIALIZATION =====
 async function init() {
     try {
-        // Fetch categories from server
+        // Try to fetch categories from server (for local development)
         const response = await fetch('/api/categories');
-        categories = await response.json();
 
-        if (categories.length === 0) {
-            alert('Nenhuma categoria encontrada! Por favor, adicione pastas com imagens na pasta "categories".');
+        if (response.ok) {
+            categories = await response.json();
+        } else {
+            throw new Error('Server not available');
+        }
+    } catch (error) {
+        // Fallback to static config (for GitHub Pages or when server is not running)
+        console.log('Using static configuration (GitHub Pages mode)');
+
+        if (typeof categoriesConfig !== 'undefined') {
+            categories = categoriesConfig;
+        } else {
+            alert('Erro: Nenhuma categoria configurada. Por favor, edite o arquivo config.js');
             return;
         }
-
-        // Hide loading screen
-        loadingScreen.classList.add('hidden');
-
-        // Show first category
-        showNominees();
-    } catch (error) {
-        console.error('Erro ao carregar categorias:', error);
-        loadingScreen.innerHTML = `
-            <div class="loading-spinner"></div>
-            <p style="color: #d4af37; text-align: center; max-width: 600px; padding: 2rem;">
-                Erro ao carregar categorias. Certifique-se de que o servidor está rodando.<br><br>
-                Execute: <code style="background: rgba(212,175,55,0.2); padding: 0.5rem; border-radius: 4px;">node server.js</code>
-            </p>
-        `;
     }
+
+    if (categories.length === 0) {
+        alert('Nenhuma categoria encontrada! Por favor, adicione categorias no arquivo config.js ou pastas com imagens na pasta "categories".');
+        return;
+    }
+
+    // Hide loading screen
+    loadingScreen.classList.add('hidden');
+
+    // Show first category
+    showNominees();
 }
 
 // ===== DISPLAY NOMINEES =====
