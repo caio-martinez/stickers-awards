@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stickers Awards - Premiação de Figurinhas</title>
+    <meta name="description" content="Stickers Awards - A maior premiação de figurinhas do ano">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="background-overlay"></div>
+
+    <main class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="main-title">Stickers Awards</h1>
+            <div class="year">2025</div>
+        </header>
+
+        <!-- Nominees Screen -->
+        <section id="nominees-screen" class="screen active">
+            <h2 id="category-title" class="category-title"></h2>
+            <div id="nominees-grid" class="nominees-grid"></div>
+        </section>
+
+        <!-- Winner Screen -->
+        <section id="winner-screen" class="screen">
+            <div class="winner-container">
+                <h2 id="winner-category" class="winner-category"></h2>
+                <div class="winner-badge">
+                    <div class="trophy-icon">🏆</div>
+                    <p class="winner-label">Vencedora</p>
+                </div>
+                <div id="winner-image-container" class="winner-image-container"></div>
+                <p id="winner-caption" class="winner-caption"></p>
+                <button id="next-category-btn" class="next-btn">Próxima Categoria</button>
+            </div>
+        </section>
+
+        <!-- Loading Screen -->
+        <div id="loading-screen" class="loading-screen">
+            <div class="loading-spinner"></div>
+            <p>Carregando categorias...</p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "stickers-awards",
+  "version": "1.0.0",
+  "description": "Stickers Awards - Premiação de Figurinhas",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["awards", "stickers", "presentation"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
