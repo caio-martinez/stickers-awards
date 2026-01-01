@@ -111,6 +111,7 @@ function createNomineeCard(nominee, index) {
 function selectWinner(index) {
     const category = categories[currentCategoryIndex];
     selectedWinner = category.nominees[index];
+    category.winner = selectedWinner;
 
     // Update winner screen
     winnerCategory.textContent = `Vencedora da categoria ${category.name}`;
@@ -137,6 +138,28 @@ function selectWinner(index) {
 // ===== NEXT CATEGORY =====
 function nextCategory() {
     currentCategoryIndex++;
+
+    // Check if we need to add "Figurinha do Ano"
+    if (currentCategoryIndex === categories.length) {
+        const lastCategory = categories[categories.length - 1];
+        
+        // Only add if the last one wasn't already "Figurinha do Ano"
+        if (lastCategory.name !== "Figurinha do Ano") {
+            const winners = categories.map(c => c.winner).filter(w => w);
+            
+            if (winners.length > 0) {
+                categories.push({
+                    name: "Figurinha do Ano",
+                    nominees: winners
+                });
+                
+                // Show the newly added category
+                selectedWinner = null;
+                showNominees();
+                return;
+            }
+        }
+    }
 
     if (currentCategoryIndex >= categories.length) {
         // All categories completed
